@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>DataViz</title>
+    <style type="text/css">
+        #viz {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+</head>
+<body onload="draw()">
+    <div id="viz"></div>
+    <script type="text/javascript">
+        function draw() {
+            var config = {
+                containerId: "viz",
+                neo4j: {
+                    serverUrl: "bolt://localhost:7687",
+                    serverUser: "neo4j",
+                    serverPassword: "Semarang12"
+                },
+                visConfig: {
+                    nodes: {
+                      shape: 'circle',
+                    },
+                    edges: {
+                      arrows: {
+                        to: {enabled: true}
+                    }
+                  },
+                },
+                labels: {
+                    "PLAYER": {
+                      label: "name",
+                      size: 25,
+                      font: {
+                          size: 26,
+                      }
+                    },
+                    "COACH": {
+                      label: "name",
+                      size: 25,
+                      font: {
+                          size: 26,
+                      }
+                    },
+                    "TEAM": {
+                      label: "name",
+                      size: 25,
+                      font: {
+                          size: 26,
+                      }
+                    }
+                },
+                relationships: {
+                },
+                initialCypher: "MATCH (n)-[r]->(m) RETURN n, r, m"
+            };
+
+            var viz = new NeoVis.default(config);
+            viz.render();
+        }
+    </script>
+</body>
+</html>
